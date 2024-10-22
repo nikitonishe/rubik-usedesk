@@ -48,7 +48,7 @@ class Usedesk extends Kubik {
     if (!host) throw new TypeError('host is not defined');
 
     if (!queryParams) queryParams = {};
-    queryParams.access_token = token;
+    queryParams.api_token = token;
 
 
     return `${host}${urlPath}?${querystring.stringify(queryParams)}`;
