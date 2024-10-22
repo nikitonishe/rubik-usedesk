@@ -93,6 +93,10 @@ class Usedesk extends Kubik {
       throw new UsedeskError(`status is not 200. ${result.message}`);
     }
 
+    if (result.error) {
+      throw new UsedeskError(`invalid result in body: ${result.error)}`);
+    }
+
     return result;
   }
 
