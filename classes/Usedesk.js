@@ -94,7 +94,7 @@ class Usedesk extends Kubik {
     }
 
     if (result.error) {
-      throw new UsedeskError(`invalid result in body: ${result.error)}`);
+      throw new UsedeskError(`invalid result in body: ${result.error}`);
     }
 
     return result;
