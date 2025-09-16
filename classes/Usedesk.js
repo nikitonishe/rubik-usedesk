@@ -40,6 +40,10 @@ class Usedesk extends Kubik {
     this.logSendAttachments = options.logSendAttachments;
   }
 
+  normalizeHost(host) {
+    return host.endsWith('/') ? host : host + '/';
+  }
+
   getUrl(urlPath, queryParams, token, host) {
     if (!token) token = this.token;
     if (!host) host = this.host;
@@ -50,6 +54,7 @@ class Usedesk extends Kubik {
     if (!queryParams) queryParams = {};
     queryParams.api_token = token;
 
+    host = this.normalizeHost(host);
 
     return `${host}${urlPath}?${querystring.stringify(queryParams)}`;
   }
@@ -65,7 +70,6 @@ class Usedesk extends Kubik {
   async request({ path, body, method, token, host, queryParams }) {
     const headers = {};
 
-    const needLogSendAttachments = this.logSendAttachments && body?.attachments?.length;
     if (body) {
       if (body instanceof FormData) {
         Object.assign(headers, body.getHeaders());
